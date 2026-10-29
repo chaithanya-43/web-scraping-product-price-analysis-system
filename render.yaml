@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: pricelens
+    runtime: python
+    plan: free
+    region: singapore
+    buildCommand: python -m pip install -r requirements.txt && python -m playwright install --with-deps chromium
+    startCommand: gunicorn --bind 0.0.0.0:$PORT --workers 1 --threads 4 --timeout 120 web.app:app
+    healthCheckPath: /api/health
+    autoDeployTrigger: "off"
+    maxShutdownDelaySeconds: 120
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.14.4
+      - key: FLASK_ENV
+        value: production
+      - key: PRICE_ANALYZER_SECRET_KEY
+        generateValue: true
+      - key: PRICE_LENS_OTP_SECRET
+        generateValue: true

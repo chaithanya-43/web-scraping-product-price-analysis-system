@@ -1,7 +1,11 @@
 requests
 beautifulsoup4
+flask
 pandas
 numpy
 matplotlib
 seaborn
 pytest
+openpyxl
+playwright
+gunicorn

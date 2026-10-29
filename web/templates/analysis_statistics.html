@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Price Statistics · PriceLens</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="app-shell analysis-page">
+
+<button id="sidebar-toggle" class="sidebar-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+<div id="sidebar-scrim" class="sidebar-scrim"></div>
+
+<aside class="sidebar" id="app-sidebar">
+
+    <a class="brand" href="/dashboard">
+        <span class="brand-icon">P</span>
+        <span>
+            Price<span class="brand-accent">Lens</span>
+            <small>PRODUCT INTELLIGENCE</small>
+        </span>
+    </a>
+
+    <div class="nav-label">WORKSPACE</div>
+
+    <nav class="side-nav">
+        <a href="/dashboard"><span>⌂</span> Overview</a>
+        <a href="/history"><span>◷</span> Analysis history</a>
+    </nav>
+
+    <div class="sidebar-bottom">
+
+        <div class="sidebar-safety">
+            <span>◈</span>
+            <div>
+                <b>Responsible access</b>
+                <small>Public pages · robots.txt respected</small>
+            </div>
+        </div>
+
+        <a class="profile-link" href="/profile">
+            <span class="avatar" id="user-avatar">U</span>
+            <span class="user-meta">
+                <b id="sidebar-user-name">Your account</b>
+                <small id="sidebar-user-email">Profile &amp; settings</small>
+            </span>
+            <span class="profile-chevron">↗</span>
+        </a>
+
+        <button id="logout-button" class="logout-button">
+            <span>↗</span> Sign out
+        </button>
+
+    </div>
+
+</aside>
+
+<main class="workspace">
+
+    <header class="topbar">
+        <div>
+            <div class="breadcrumb">
+                Workspace <span>/</span> <b>Price statistics</b>
+            </div>
+            <p class="topbar-subtitle">
+                Web Scraping &amp; Product Price Analysis
+            </p>
+        </div>
+
+        <div class="topbar-user">
+            <span class="live-dot"></span>
+            <span>Analysis view</span>
+            <span class="avatar small-avatar" id="header-avatar">U</span>
+        </div>
+    </header>
+
+    <section class="analysis-page-content">
+
+        <a class="analysis-back" href="/dashboard?analysis={{ request.view_args.analysis_id }}">
+            ← Back to overview
+        </a>
+
+        <div class="analysis-page-heading">
+
+            <div>
+                <p class="eyebrow">AT A GLANCE</p>
+
+                <h1>Price statistics</h1>
+
+                <p>
+                    A statistical summary of the products collected in this analysis.
+                </p>
+            </div>
+
+            <div class="analysis-source-card">
+                <span>SOURCE</span>
+                <b id="analysis-source">Loading...</b>
+                <small id="analysis-product-count">— products</small>
+            </div>
+
+        </div>
+
+        <div id="analysis-status" class="analysis-status hidden"></div>
+
+        <section class="statistics-highlight-grid">
+
+            <article class="statistics-highlight surface">
+                <span>MINIMUM</span>
+                <strong id="stat-minimum">—</strong>
+                <small>Lowest product price</small>
+            </article>
+
+            <article class="statistics-highlight surface">
+                <span>MEDIAN</span>
+                <strong id="stat-median">—</strong>
+                <small>Middle price in the dataset</small>
+            </article>
+
+            <article class="statistics-highlight surface">
+                <span>AVERAGE</span>
+                <strong id="stat-average">—</strong>
+                <small>Mean product price</small>
+            </article>
+
+            <article class="statistics-highlight surface">
+                <span>MAXIMUM</span>
+                <strong id="stat-maximum">—</strong>
+                <small>Highest product price</small>
+            </article>
+
+        </section>
+
+        <section class="analysis-chart-panel surface">
+
+            <div class="analysis-chart-heading">
+                <div>
+                    <span class="chart-overline">STATISTICAL RANGE</span>
+                    <h2>Price overview</h2>
+                </div>
+                <span class="analysis-hint">Click to enlarge; select a metric to inspect its breakdown</span>
+            </div>
+
+            <div class="analysis-large-chart statistics-chart">
+                <canvas id="analysis-chart"></canvas>
+            </div>
+
+        </section>
+
+        <section class="analysis-detail-panel surface">
+
+            <div>
+                <span class="chart-overline">PRICE SIGNAL</span>
+
+                <h2>What the numbers mean</h2>
+
+                <p>
+                    Minimum and maximum show the observed range, while the
+                    median and average provide a central view of the dataset.
+                </p>
+            </div>
+
+            <a id="products-link" class="analysis-secondary-button" href="#">
+                View collected products →
+            </a>
+
+        </section>
+
+    </section>
+
+    <footer class="workspace-footer">
+        <span>PriceLens <span>·</span> Product intelligence from public pages</span>
+        <span>Respect site rules. Compare responsibly.</span>
+    </footer>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url_for('static', filename='chart-explorer.js') }}"></script>
+<script src="{{ url_for('static', filename='analysis.js') }}"></script>
+
+</body>
+</html>

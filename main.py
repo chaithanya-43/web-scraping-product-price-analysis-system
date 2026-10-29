@@ -1,17 +1,21 @@
-import os
+﻿import os
 import pandas as pd
 
-from scraper.fetcher import fetch_page
-from scraper.parser import parse_products
+from scraper.scraper import scrape_products
 from analysis.price_analysis import (
     clean_product_data,
     calculate_price_statistics,
+    get_product_insights,
     save_data
 )
-from visualization.charts import plot_price_comparison
+from visualization.charts import (
+    plot_price_comparison,
+    plot_price_distribution,
+    plot_rating_vs_price
+)
 
 
-URL = "https://books.toscrape.com/"
+DEFAULT_URL = "https://books.toscrape.com/"
 
 
 def main():
@@ -20,18 +24,28 @@ def main():
     print("=" * 60)
 
     try:
-        print("\n[1/5] Fetching website...")
+        url = input(
+            f"\nEnter website URL [{DEFAULT_URL}]: "
+        ).strip()
 
-        html = fetch_page(URL)
+        if not url:
+            url = DEFAULT_URL
 
-        print(f"      HTML fetched: {len(html)} characters")
+        pages_input = input(
+            "Enter number of pages [1]: "
+        ).strip()
 
-        print("\n[2/5] Extracting products...")
+        pages = int(pages_input) if pages_input else 1
 
-        products = parse_products(html)
+        print(f"\n[1/5] Scraping {pages} page(s)...")
+
+        products = scrape_products(
+            url,
+            pages=pages
+        )
 
         if not products:
-            print("      No products were found on the webpage.")
+            print("      No products were found.")
             return
 
         print(f"      Products extracted: {len(products)}")
@@ -48,7 +62,7 @@ def main():
 
         print("      Raw data saved to data/raw/products_raw.csv")
 
-        print("\n[3/5] Cleaning product data...")
+        print("\n[2/5] Cleaning product data...")
 
         df = clean_product_data(products)
 
@@ -65,23 +79,85 @@ def main():
 
         print("      Cleaned data saved to data/processed/products.csv")
 
-        print("\n[4/5] Analyzing prices...")
+        print("\n[3/5] Analyzing prices...")
 
         statistics = calculate_price_statistics(df)
+        insights = get_product_insights(df)
 
         print("\n      PRICE ANALYSIS")
         print("      " + "-" * 35)
-        print(f"      Minimum price : £{statistics['minimum_price']:.2f}")
-        print(f"      Maximum price : £{statistics['maximum_price']:.2f}")
-        print(f"      Average price : £{statistics['average_price']:.2f}")
-        print(f"      Price range   : £{statistics['price_difference']:.2f}")
 
-        print("\n[5/5] Generating visualization...")
+        print(
+            f"      Minimum price : "
+            f"£{statistics['minimum_price']:.2f}"
+        )
+
+        print(
+            f"      Maximum price : "
+            f"£{statistics['maximum_price']:.2f}"
+        )
+
+        print(
+            f"      Average price : "
+            f"£{statistics['average_price']:.2f}"
+        )
+
+        print(
+            f"      Median price  : "
+            f"£{statistics['median_price']:.2f}"
+        )
+
+        print(
+            f"      Price range   : "
+            f"£{statistics['price_difference']:.2f}"
+        )
+
+        print("\n      PRODUCT INSIGHTS")
+        print("      " + "-" * 35)
+
+        highest_rated = insights["highest_rated_product"]
+
+        if highest_rated:
+            print(
+                f"      Highest rated : "
+                f"{highest_rated['product_name']} "
+                f"({highest_rated['rating']:.0f}/5)"
+            )
+
+        lowest_priced = insights["lowest_priced_product"]
+
+        print(
+            f"      Lowest priced : "
+            f"{lowest_priced['product_name']} "
+            f"(£{lowest_priced['price']:.2f})"
+        )
+
+        most_expensive = insights["most_expensive_product"]
+
+        print(
+            f"      Most expensive: "
+            f"{most_expensive['product_name']} "
+            f"(£{most_expensive['price']:.2f})"
+        )
+
+        print("\n[4/5] Generating visualizations...")
 
         plot_price_comparison(
             df,
             "data/processed/price_comparison.png"
         )
+
+        plot_price_distribution(
+            df,
+            "data/processed/price_distribution.png"
+        )
+
+        plot_rating_vs_price(
+            df,
+            "data/processed/rating_vs_price.png"
+        )
+
+        print("\n[5/5] Finalizing output...")
 
         print("\n" + "=" * 60)
         print("Project execution completed successfully.")

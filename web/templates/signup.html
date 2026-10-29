@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0B0D12">
+
+    <title>Create account · PriceLens</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+
+<body class="auth-page">
+
+    <aside class="auth-aside">
+
+        <a class="brand" href="/">
+            <span class="brand-icon">P</span>
+
+            <span class="brand-name">
+                Price<span class="brand-accent">Lens</span>
+                <small>PRODUCT INTELLIGENCE</small>
+            </span>
+        </a>
+
+        <div class="auth-pitch">
+
+            <p class="eyebrow">A CLEARER WAY TO COMPARE</p>
+
+            <h1>
+                Turn the web<br>
+                into <span>insight.</span>
+            </h1>
+
+            <p class="auth-lead">
+                Collect public product data, explore pricing patterns,
+                and return to your saved research whenever you need it.
+            </p>
+
+            <div class="auth-benefits">
+
+                <div class="auth-benefit">
+                    <span class="benefit-number">01</span>
+                    <div>
+                        <strong>Collect</strong>
+                        <small>Gather product information from public pages.</small>
+                    </div>
+                </div>
+
+                <div class="auth-benefit">
+                    <span class="benefit-number">02</span>
+                    <div>
+                        <strong>Compare</strong>
+                        <small>Understand prices, ratings and product patterns.</small>
+                    </div>
+                </div>
+
+                <div class="auth-benefit">
+                    <span class="benefit-number">03</span>
+                    <div>
+                        <strong>Understand</strong>
+                        <small>Keep your research organized in one place.</small>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="auth-proof">
+            <span class="proof-dot"></span>
+            Respectful analysis · no login or CAPTCHA bypass
+        </div>
+
+    </aside>
+
+
+    <main class="auth-main">
+
+        <div class="auth-top-link">
+            <span>Already have an account?</span>
+            <a href="/login">Sign in <span>→</span></a>
+        </div>
+
+        <section class="auth-card">
+
+            <div class="auth-card-top">
+                <span class="auth-card-mark">P</span>
+
+                <div>
+                    <p class="eyebrow">GET STARTED</p>
+                    <span class="auth-step">YOUR RESEARCH SPACE</span>
+                </div>
+            </div>
+
+            <h2>Create your account</h2>
+
+            <p class="auth-description">
+                Build a private home for your product research.
+            </p>
+
+            <form id="signup-form" class="auth-form">
+
+                <div class="form-field">
+                    <label for="name">Full name</label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Your name"
+                        autocomplete="name"
+                        maxlength="100"
+                        required
+                    >
+                </div>
+
+
+                <div class="form-field">
+                    <label for="email">Email address</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="you@example.com"
+                        autocomplete="email"
+                        required
+                    >
+                </div>
+
+
+                <div class="form-field">
+
+                    <div class="field-heading">
+                        <label for="password">Password</label>
+                        <span>8+ characters</span>
+                    </div>
+
+                    <div class="password-wrap">
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Create a strong password"
+                            autocomplete="new-password"
+                            minlength="8"
+                            required
+                        >
+
+                        <button
+                            class="password-toggle"
+                            type="button"
+                            data-toggle-password="password"
+                            aria-label="Show password"
+                        >
+                            Show
+                        </button>
+
+                    </div>
+
+                    <div class="strength-track">
+                        <span id="strength-bar"></span>
+                    </div>
+
+                    <small
+                        class="strength-label"
+                        id="strength-label"
+                    >
+                        Use a longer password with mixed character types.
+                    </small>
+
+                </div>
+
+
+                <button
+                    class="primary-button signup-button"
+                    type="submit"
+                >
+                    <span>Create account</span>
+                    <span class="button-arrow">→</span>
+                </button>
+
+            </form>
+
+
+            <div
+                id="auth-status"
+                class="auth-message hidden"
+                role="status"
+                aria-live="polite"
+            ></div>
+
+
+            <div class="auth-security-note">
+                <span>◇</span>
+                Your password is securely protected.
+            </div>
+
+            <p class="auth-footer">
+                By creating an account, you can save and revisit
+                your product research.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <script src="{{ url_for('static', filename='auth.js') }}"></script>
+
+</body>
+</html>
