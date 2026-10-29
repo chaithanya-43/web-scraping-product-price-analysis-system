@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width,initial-scale=1"
+    >
+
+    <meta
+        name="theme-color"
+        content="#0B0D12"
+    >
+
+    <title>
+        Sign in · PriceLens
+    </title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body class="auth-page login-page">
+
+
+<!-- =====================================================
+     LEFT BRAND / CONTEXT
+     ===================================================== -->
+
+<aside class="auth-aside">
+
+
+    <a
+        class="brand"
+        href="/"
+        aria-label="PriceLens home"
+    >
+
+        <span class="brand-icon">
+            P
+        </span>
+
+        <span>
+            Price<span class="brand-accent">Lens</span>
+
+            <small>
+                PRODUCT INTELLIGENCE
+            </small>
+
+        </span>
+
+    </a>
+
+
+    <div class="auth-pitch">
+
+        <p class="eyebrow">
+            WEB SCRAPING &amp; PRODUCT PRICE ANALYSIS
+        </p>
+
+
+        <h1>
+            Research prices<br>
+            with <span>clarity.</span>
+        </h1>
+
+
+        <p>
+            Turn public product pages into useful price
+            comparisons. Your analyses and research history
+            stay organized in one private workspace.
+        </p>
+
+
+        <div class="auth-aside-stat">
+
+            <b>
+                01
+            </b>
+
+            <span>
+                Paste a permitted page URL
+
+                <small>
+                    Structured product data, prices, and ratings
+                </small>
+
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="auth-proof">
+
+        <span>●</span>
+
+        Public pages only · site rules respected
+
+    </div>
+
+</aside>
+
+
+<!-- =====================================================
+     LOGIN
+     ===================================================== -->
+
+<main class="auth-main">
+
+
+    <section class="auth-card">
+
+
+        <div class="auth-card-header">
+
+            <p class="eyebrow">
+                WELCOME BACK
+            </p>
+
+            <h2>
+                Sign in to PriceLens
+            </h2>
+
+            <p class="auth-description">
+                Open your product intelligence workspace.
+            </p>
+
+        </div>
+
+
+        <form
+            id="login-form"
+            class="auth-form"
+        >
+
+
+            <!-- Email -->
+
+            <div class="auth-field">
+
+                <label for="email">
+                    Email address
+                </label>
+
+                <div class="input-wrap">
+
+                    <span class="input-icon">
+                        @
+                    </span>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="you@example.com"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- Password -->
+
+            <div class="auth-field">
+
+                <div class="auth-inline">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <a href="/forgot-password">
+                        Forgot password?
+                    </a>
+
+                </div>
+
+
+                <div class="password-wrap">
+
+                    <span class="input-icon">
+                        •
+                    </span>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                    <button
+                        class="password-toggle"
+                        type="button"
+                        data-toggle-password="password"
+                    >
+                        Show
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Submit -->
+
+            <button
+                class="primary-button"
+                type="submit"
+            >
+
+                <span>
+                    Sign in
+                </span>
+
+                <span class="button-arrow">
+                    →
+                </span>
+
+            </button>
+
+
+        </form>
+
+
+        <!-- Status -->
+
+        <div
+            id="auth-status"
+            class="auth-message hidden"
+            role="status"
+            aria-live="polite"
+        ></div>
+
+
+        <!-- Signup -->
+
+        <p class="auth-footer">
+
+            New to PriceLens?
+
+            <a href="/signup">
+                Create an account
+            </a>
+
+        </p>
+
+
+        <div class="auth-security-note">
+
+            <span>
+                ◆
+            </span>
+
+            Your workspace is private to your account.
+
+        </div>
+
+
+    </section>
+
+</main>
+
+
+<script src="{{ url_for('static', filename='auth.js') }}"></script>
+<style>
+    .login-page {
+        grid-template-columns: minmax(0, 1fr) minmax(520px, 560px) !important;
+    }
+
+    .login-page .auth-main {
+        width: 100%;
+    }
+
+    .login-page .auth-card {
+        width: 520px !important;
+        max-width: 520px !important;
+    }
+</style>
+</body>
+</html>

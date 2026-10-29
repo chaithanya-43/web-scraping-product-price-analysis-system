@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width,initial-scale=1"
+    >
+
+    <meta
+        name="theme-color"
+        content="#0B0D12"
+    >
+
+    <title>
+        Profile · PriceLens
+    </title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body class="app-shell profile-page">
+
+
+<!-- =====================================================
+     MOBILE NAVIGATION
+     ===================================================== -->
+
+<button
+    id="sidebar-toggle"
+    class="sidebar-toggle"
+    aria-label="Open navigation"
+    aria-expanded="false"
+    type="button"
+>
+    ☰
+</button>
+
+
+<div
+    id="sidebar-scrim"
+    class="sidebar-scrim"
+></div>
+
+
+<!-- =====================================================
+     SIDEBAR
+     ===================================================== -->
+
+<aside
+    class="sidebar"
+    id="app-sidebar"
+>
+
+
+    <a
+        class="brand"
+        href="/dashboard"
+    >
+
+        <span class="brand-icon">
+            P
+        </span>
+
+        <span>
+            Price<span class="brand-accent">Lens</span>
+
+            <small>
+                PRODUCT INTELLIGENCE
+            </small>
+
+        </span>
+
+    </a>
+
+
+    <div class="nav-label">
+        WORKSPACE
+    </div>
+
+
+    <nav
+        class="side-nav"
+        aria-label="Main navigation"
+    >
+
+        <a href="/dashboard">
+            <span>⌂</span>
+            Overview
+        </a>
+
+        <a href="/dashboard#analyze">
+            <span>⌕</span>
+            Analyze
+        </a>
+
+        <a href="/history">
+            <span>◷</span>
+            Analysis history
+        </a>
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+
+        <div class="sidebar-safety">
+
+            <span>◈</span>
+
+            <div>
+
+                <b>
+                    Responsible access
+                </b>
+
+                <small>
+                    Public pages · robots.txt respected
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <a
+            class="profile-link active"
+            href="/profile"
+        >
+
+            <span
+                class="avatar"
+                id="user-avatar"
+            >
+                U
+            </span>
+
+            <span class="user-meta">
+
+                <b id="sidebar-user-name">
+                    Your account
+                </b>
+
+                <small id="sidebar-user-email">
+                    Profile &amp; settings
+                </small>
+
+            </span>
+
+        </a>
+
+
+        <button
+            id="logout-button"
+            class="logout-button"
+            type="button"
+        >
+
+            <span>
+                ↗
+            </span>
+
+            Sign out
+
+        </button>
+
+
+    </div>
+
+</aside>
+
+
+<!-- =====================================================
+     MAIN WORKSPACE
+     ===================================================== -->
+
+<main class="workspace profile-workspace">
+
+
+    <!-- Top bar -->
+
+    <header class="topbar">
+
+        <div>
+
+            <div class="breadcrumb">
+
+                Workspace
+
+                <span>/</span>
+
+                <b>
+                    Profile
+                </b>
+
+            </div>
+
+            <p class="topbar-subtitle">
+                Account information and preferences
+            </p>
+
+        </div>
+
+
+        <div class="topbar-user">
+
+            <span class="live-dot"></span>
+
+            <span>
+                Account active
+            </span>
+
+        </div>
+
+    </header>
+
+
+    <!-- =================================================
+         PROFILE HEADING
+         ================================================= -->
+
+    <section class="profile-heading">
+
+        <div>
+
+            <p class="eyebrow">
+                ACCOUNT
+            </p>
+
+            <h1>
+                Your profile
+            </h1>
+
+            <p>
+                Your PriceLens account details and activity.
+            </p>
+
+        </div>
+
+
+        <div class="profile-status">
+
+            <span class="profile-status-dot"></span>
+
+            Private account
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         ACCOUNT PANEL
+         ================================================= -->
+
+    <section class="profile-panel surface">
+
+
+        <div class="profile-panel-header">
+
+            <div class="profile-section-label">
+                01
+            </div>
+
+
+            <div>
+
+                <p class="panel-overline">
+                    ACCOUNT INFORMATION
+                </p>
+
+                <h2>
+                    Account details
+                </h2>
+
+                <p>
+                    Your sign-in details and account activity.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Account identity -->
+
+        <div class="profile-identity">
+
+            <div
+                class="profile-large-avatar"
+                id="profile-avatar"
+            >
+                U
+            </div>
+
+
+            <div>
+
+                <b id="profile-display-name">
+                    Your account
+                </b>
+
+                <span id="profile-display-email">
+                    Your account email
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- Details -->
+
+        <div class="profile-grid">
+
+
+            <div class="profile-field">
+
+                <span>
+                    NAME
+                </span>
+
+                <b id="profile-name">
+                    —
+                </b>
+
+            </div>
+
+
+            <div class="profile-field">
+
+                <span>
+                    EMAIL
+                </span>
+
+                <b id="profile-email">
+                    —
+                </b>
+
+            </div>
+
+
+            <div class="profile-field">
+
+                <span>
+                    ACCOUNT CREATED
+                </span>
+
+                <b id="profile-created">
+                    —
+                </b>
+
+            </div>
+
+
+            <div class="profile-field">
+
+                <span>
+                    LAST SIGN IN
+                </span>
+
+                <b id="profile-last-login">
+                    —
+                </b>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- Privacy note -->
+
+        <div class="profile-privacy">
+
+            <span>
+                ◆
+            </span>
+
+            <div>
+
+                <b>
+                    Private workspace
+                </b>
+
+                <small>
+                    Your saved analyses and account information
+                    are available only to your authenticated account.
+                </small>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =================================================
+         QUICK LINKS
+         ================================================= -->
+
+    <section class="profile-links">
+
+
+        <a
+            class="profile-action-card"
+            href="/dashboard#analyze"
+        >
+
+            <span class="profile-action-icon">
+                ⌕
+            </span>
+
+            <span>
+
+                <b>
+                    Start a new analysis
+                </b>
+
+                <small>
+                    Analyze a public product page
+                </small>
+
+            </span>
+
+            <strong>
+                →
+            </strong>
+
+        </a>
+
+
+        <a
+            class="profile-action-card"
+            href="/history"
+        >
+
+            <span class="profile-action-icon">
+                ◷
+            </span>
+
+            <span>
+
+                <b>
+                    View analysis history
+                </b>
+
+                <small>
+                    Reopen your saved research
+                </small>
+
+            </span>
+
+            <strong>
+                →
+            </strong>
+
+        </a>
+
+
+    </section>
+
+
+    <!-- Footer -->
+
+    <footer class="workspace-footer">
+
+        <span>
+            PriceLens · Your account is private to you.
+        </span>
+
+        <span>
+            <a href="/dashboard#analyze">
+                Start a new analysis →
+            </a>
+        </span>
+
+    </footer>
+
+
+</main>
+
+
+<script src="{{ url_for('static', filename='profile.js') }}"></script>
+
+</body>
+</html>

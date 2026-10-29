@@ -1,0 +1,1165 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0b0d12">
+
+    <title>Dashboard · PriceLens</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+
+<body class="app-shell">
+
+    <!-- =====================================================
+         MOBILE NAVIGATION
+         ===================================================== -->
+
+    <button
+        id="sidebar-toggle"
+        class="sidebar-toggle"
+        type="button"
+        aria-label="Open navigation"
+        aria-expanded="false"
+    >
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <div
+        id="sidebar-scrim"
+        class="sidebar-scrim"
+        aria-hidden="true"
+    ></div>
+
+
+    <!-- =====================================================
+         SIDEBAR
+         ===================================================== -->
+
+    <aside class="sidebar" id="app-sidebar">
+
+        <div class="sidebar-inner">
+
+            <a class="brand" href="/dashboard">
+                <span class="brand-mark">
+                    <span>P</span>
+                </span>
+
+                <span class="brand-copy">
+                    <strong>
+                        Price<span>Lens</span>
+                    </strong>
+
+                    <small>PRODUCT INTELLIGENCE</small>
+                </span>
+            </a>
+
+
+            <div class="nav-label">
+                WORKSPACE
+            </div>
+
+            <nav class="side-nav" aria-label="Main navigation">
+
+                <a
+                    class="active"
+                    href="/dashboard"
+                >
+                    <span class="nav-icon">⌂</span>
+                    <span>Overview</span>
+                </a>
+
+                <a
+                    href="#analyze"
+                    data-scroll="analyze"
+                >
+                    <span class="nav-icon">⌕</span>
+                    <span>Analyze</span>
+                </a>
+
+                <a href="/import">
+                    <span class="nav-icon">⇧</span>
+                    <span>Import data</span>
+                </a>
+
+                <a href="/history">
+                    <span class="nav-icon">◷</span>
+                    <span>Analysis history</span>
+                </a>
+
+            </nav>
+
+
+            <div class="sidebar-spacer"></div>
+
+
+            <div class="sidebar-bottom">
+
+                <div class="sidebar-safety">
+                    <span class="safety-icon">✓</span>
+
+                    <div>
+                        <b>Responsible access</b>
+                        <small>
+                            Public pages · robots.txt respected
+                        </small>
+                    </div>
+                </div>
+
+
+                <a
+                    class="profile-link"
+                    href="/profile"
+                >
+                    <span
+                        class="avatar"
+                        id="user-avatar"
+                    >
+                        U
+                    </span>
+
+                    <span class="user-meta">
+                        <b id="sidebar-user-name">
+                            Your account
+                        </b>
+
+                        <small id="sidebar-user-email">
+                            Profile &amp; settings
+                        </small>
+                    </span>
+
+                    <span class="profile-chevron">
+                        ↗
+                    </span>
+                </a>
+
+
+                <button
+                    id="logout-button"
+                    class="logout-button"
+                    type="button"
+                >
+                    <span>↗</span>
+                    Sign out
+                </button>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN WORKSPACE
+         ===================================================== -->
+
+    <main class="workspace">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div class="topbar-context">
+
+                <div class="breadcrumb">
+                    <span>Workspace</span>
+                    <span class="breadcrumb-separator">/</span>
+                    <b>Overview</b>
+                </div>
+
+                <p class="topbar-subtitle">
+                    Web Scraping &amp; Product Price Analysis
+                </p>
+
+            </div>
+
+
+            <div class="topbar-actions">
+
+
+
+
+                <div class="topbar-user">
+
+                    <span
+                        class="live-dot"
+                        id="analysis-ready-dot"
+                    ></span>
+
+                    <span id="analysis-ready-label">
+                        Ready for analysis
+                    </span>
+
+                    <span
+                        class="avatar small-avatar"
+                        id="header-avatar"
+                    >
+                        U
+                    </span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+             CONTENT
+             ================================================= -->
+
+        <div class="workspace-content">
+
+
+            <!-- =================================================
+                 ANALYSIS HERO
+                 ================================================= -->
+
+            <section
+                class="page-heading enter-up"
+                id="analyze"
+            >
+
+                <div class="heading-copy">
+
+                    <p class="eyebrow">
+                        <span class="eyebrow-mark">✳</span>
+                        PRODUCT PRICE INTELLIGENCE
+                    </p>
+
+                    <h1>
+                        Analyze product prices.
+                    </h1>
+
+                    <p class="heading-description">
+                        Compare products, prices, ratings, and
+                        availability from publicly accessible
+                        web pages.
+                    </p>
+
+                </div>
+
+
+                <div class="heading-visual">
+
+                    <div class="heading-orbit orbit-one"></div>
+                    <div class="heading-orbit orbit-two"></div>
+
+                    <div class="heading-art">
+
+                        <span class="art-line line-one"></span>
+                        <span class="art-line line-two"></span>
+                        <span class="art-line line-three"></span>
+
+                        <div class="art-center">
+                            <span>PL</span>
+                        </div>
+
+                        <span class="art-tag tag-top">
+                            LIVE DATA
+                        </span>
+
+                        <span class="art-tag tag-bottom">
+                            PRICE ANALYSIS
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 ANALYSIS PANEL
+                 ================================================= -->
+
+            <section
+                class="analyze-panel surface enter-up"
+                aria-labelledby="analyze-title"
+            >
+
+                <div class="panel-heading">
+
+                    <div class="panel-title">
+
+                        <span class="section-index">
+                            01
+                        </span>
+
+                        <div>
+                            <p class="panel-kicker">
+                                NEW ANALYSIS
+                            </p>
+
+                            <h2 id="analyze-title">
+                                Start a new analysis
+                            </h2>
+
+                            <p>
+                                Paste a product or category page URL to begin.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <span class="panel-tag">
+                        PUBLIC PAGES ONLY
+                    </span>
+
+                </div>
+
+
+                <form
+                    id="analysis-form"
+                    class="analyze-form"
+                >
+
+                    <div class="url-field">
+
+                        <label for="url">
+                            Website URL
+                        </label>
+
+                        <div class="url-input-wrap">
+
+                            <span class="url-icon">
+                                ↗
+                            </span>
+
+                            <input
+                                type="url"
+                                id="url"
+                                placeholder="https://store.example.com/category/products"
+                                autocomplete="url"
+                                required
+                            >
+
+                            <button
+                                class="clear-url hidden"
+                                id="clear-url"
+                                type="button"
+                                aria-label="Clear URL"
+                            >
+                                ×
+                            </button>
+
+                        </div>
+
+                        <small>
+                            We check robots.txt and stop at login
+                            or CAPTCHA challenges.
+                        </small>
+
+                    </div>
+
+
+                    <div class="pages-field">
+
+                        <label for="pages">
+                            Maximum pages
+                        </label>
+
+                        <input
+                            id="pages"
+                            type="number"
+                            min="1"
+                            max="20"
+                            step="1"
+                            value="1"
+                            required
+                            aria-label="Maximum number of listing pages"
+                        >
+                        <small>Scrape up to 20 pages. Stops if the next listing page is unavailable.</small>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        id="analyze-button"
+                        class="primary-button"
+                    >
+                        <span>Analyze prices</span>
+                        <span class="button-arrow">→</span>
+                    </button>
+
+                </form>
+
+                <!-- Source detection -->
+
+                <div
+                    class="source-detection"
+                    id="source-detection"
+                >
+
+                    <span class="source-orbit">
+                        ◎
+                    </span>
+
+                    <div class="source-copy">
+
+                        <b>
+                            Source auto-detection
+                        </b>
+
+                        <small>
+                            Enter a URL to identify the website
+                            before analysis.
+                        </small>
+
+                    </div>
+
+                    <span class="detection-state">
+                        Waiting
+                    </span>
+
+                </div>
+
+
+                <!-- Status -->
+
+                <div
+                    id="analysis-status"
+                    class="status-box hidden"
+                    role="status"
+                    aria-live="polite"
+                ></div>
+
+
+                <!-- Progress -->
+
+                <div
+                    class="progress-wrap hidden"
+                    id="progress-wrap"
+                    aria-live="polite"
+                >
+
+                    <div class="progress-copy">
+
+                        <span id="progress-message">
+                            Checking access and analyzing page…
+                        </span>
+
+                        <span id="progress-percent">
+                            In progress
+                        </span>
+
+                    </div>
+
+                    <div class="progress-track">
+                        <div id="progress-bar"></div>
+                    </div>
+
+                    <div class="progress-steps">
+                        <span>Check access</span>
+                        <span>Collect products</span>
+                        <span>Analyze prices</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 RESULTS
+                 ================================================= -->
+
+            <section
+                class="results-section hidden"
+                id="results-section"
+                aria-live="polite"
+            >
+
+                <!-- Results heading -->
+
+                <div class="results-title-row">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            <span class="eyebrow-mark">✳</span>
+                            ANALYSIS SNAPSHOT
+                        </p>
+
+                        <h2>
+                            Your results
+                        </h2>
+
+                    </div>
+
+
+                    <div class="result-actions">
+
+                        <span
+                            class="result-badge"
+                            id="result-status"
+                        >
+                            Success
+                        </span>
+
+                        <button id="export-csv" class="quiet-button" type="button">↓ Export CSV</button>
+                        <button id="export-xlsx" class="quiet-button" type="button">↓ Export Excel</button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Source summary -->
+
+                <div class="source-summary surface enter-up">
+
+                    <div class="source-emblem">
+                        ◎
+                    </div>
+
+                    <div class="source-details">
+
+                        <span class="summary-kicker">
+                            SOURCE
+                        </span>
+
+                        <b id="result-source">
+                            —
+                        </b>
+
+                        <small id="result-url">
+                            —
+                        </small>
+
+                    </div>
+
+
+                    <div class="summary-divider"></div>
+
+
+                    <div class="summary-stat">
+
+                        <span>Products found</span>
+                        <b id="product-count">—</b>
+
+                    </div>
+
+
+                    <div class="summary-stat">
+
+                        <span>Currency</span>
+                        <b id="result-currency">—</b>
+
+                    </div>
+
+
+                    <div class="summary-stat">
+
+                        <span>Analyzed at</span>
+                        <b id="result-time">—</b>
+                        <small id="result-date">—</small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     STATISTICS
+                     ================================================= -->
+
+                <div
+                    class="stats-grid"
+                    id="stats-grid"
+                >
+
+                    <article class="stat-card surface">
+
+                        <div class="stat-top">
+                            <span>Products found</span>
+                            <span class="stat-icon orange">▦</span>
+                        </div>
+
+                        <b
+                            class="stat-value"
+                            id="stat-products"
+                        >
+                            —
+                        </b>
+
+                        <small>
+                            Valid product records
+                        </small>
+
+                    </article>
+
+
+                    <article class="stat-card surface">
+
+                        <div class="stat-top">
+                            <span>Minimum price</span>
+                            <span class="stat-icon amber">↓</span>
+                        </div>
+
+                        <b
+                            class="stat-value"
+                            id="minimum-price"
+                        >
+                            —
+                        </b>
+
+                        <small>
+                            Lowest in this dataset
+                        </small>
+
+                    </article>
+
+
+                    <article class="stat-card surface">
+
+                        <div class="stat-top">
+                            <span>Maximum price</span>
+                            <span class="stat-icon orange">↑</span>
+                        </div>
+
+                        <b
+                            class="stat-value"
+                            id="maximum-price"
+                        >
+                            —
+                        </b>
+
+                        <small>
+                            Highest in this dataset
+                        </small>
+
+                    </article>
+
+
+                    <article class="stat-card surface">
+
+                        <div class="stat-top">
+                            <span>Average price</span>
+                            <span class="stat-icon amber">∿</span>
+                        </div>
+
+                        <b
+                            class="stat-value"
+                            id="average-price"
+                        >
+                            —
+                        </b>
+
+                        <small>
+                            Mean product price
+                        </small>
+
+                    </article>
+
+
+                    <article class="stat-card surface">
+
+                        <div class="stat-top">
+                            <span>Median price</span>
+                            <span class="stat-icon orange">↔</span>
+                        </div>
+
+                        <b
+                            class="stat-value"
+                            id="median-price"
+                        >
+                            —
+                        </b>
+
+                        <small>
+                            Middle of the price range
+                        </small>
+
+                    </article>
+
+
+                    <article class="stat-card surface">
+
+                        <div class="stat-top">
+                            <span>Price difference</span>
+                            <span class="stat-icon amber">⤢</span>
+                        </div>
+
+                        <b
+                            class="stat-value"
+                            id="price-difference"
+                        >
+                            —
+                        </b>
+
+                        <small>
+                            Maximum minus minimum
+                        </small>
+
+                    </article>
+
+                </div>
+
+
+                <!-- =================================================
+                     INSIGHTS
+                     ================================================= -->
+
+                <div class="insights-strip surface">
+
+                    <div class="insights-title">
+
+                        <span class="insight-star">
+                            ✳
+                        </span>
+
+                        <div>
+                            <b>Product insights</b>
+
+                            <small>
+                                Signals from the collected data
+                            </small>
+                        </div>
+
+                    </div>
+
+
+                    <div class="insight-item">
+
+                        <span>Lowest price</span>
+
+                        <b id="lowest-priced-name">
+                            —
+                        </b>
+
+                        <small id="lowest-priced">
+                            —
+                        </small>
+
+                    </div>
+
+
+                    <div class="insight-item">
+
+                        <span>Highest rated</span>
+
+                        <b id="highest-rated-name">
+                            —
+                        </b>
+
+                        <small id="highest-rated">
+                            —
+                        </small>
+
+                    </div>
+
+
+                    <div class="insight-item">
+
+                        <span>Highest price</span>
+
+                        <b id="most-expensive-name">
+                            —
+                        </b>
+
+                        <small id="most-expensive">
+                            —
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     ANALYTICS HEADER
+                     ================================================= -->
+
+                <div class="charts-heading">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            EXPLORE THE DATA
+                        </p>
+
+                        <h2>
+                            Price analytics
+                        </h2>
+
+                    </div>
+
+                    <span class="chart-hint">
+                        <span class="hint-dot"></span>
+                        Click a chart to zoom, then select a section to inspect its data.
+                    </span>
+
+                </div>
+
+
+                <!-- Currency warning -->
+
+                <div
+                    id="currency-warning"
+                    class="currency-warning hidden"
+                    role="note"
+                >
+                    Multiple or unspecified currencies were found.
+                    Combined price comparisons are hidden.
+                </div>
+
+
+                <!-- =================================================
+                     CHARTS
+                     ================================================= -->
+
+                <div
+                    class="charts-grid"
+                    id="charts-grid"
+                >
+
+                    <article class="chart-card surface">
+
+                        <div class="chart-card-heading">
+
+                            <div>
+                                <span class="chart-overline">
+                                    PRODUCT LEVEL
+                                </span>
+
+                                <h3>
+                                    Price comparison
+                                </h3>
+                            </div>
+
+                            <span class="chart-interaction">
+                                ↗
+                                <small>click to explore</small>
+                            </span>
+
+                        </div>
+
+                        <div class="chart-wrapper">
+                            <canvas
+                                id="price-chart"
+                                aria-label="Product price comparison chart"
+                            ></canvas>
+                        </div>
+
+                    </article>
+
+
+                    <article class="chart-card surface">
+
+                        <div class="chart-card-heading">
+
+                            <div>
+                                <span class="chart-overline">
+                                    DISTRIBUTION
+                                </span>
+
+                                <h3>
+                                    Price ranges
+                                </h3>
+                            </div>
+
+                            <span class="chart-interaction">
+                                ↗
+                                <small>click to explore</small>
+                            </span>
+
+                        </div>
+
+                        <div class="chart-wrapper">
+                            <canvas
+                                id="distribution-chart"
+                                aria-label="Product price distribution chart"
+                            ></canvas>
+                        </div>
+
+                    </article>
+
+
+                    <article class="chart-card surface">
+
+                        <div class="chart-card-heading">
+
+                            <div>
+                                <span class="chart-overline">
+                                    QUALITY SIGNAL
+                                </span>
+
+                                <h3>
+                                    Price vs. rating
+                                </h3>
+                            </div>
+
+                            <span class="chart-interaction">
+                                ↗
+                                <small>click to explore</small>
+                            </span>
+
+                        </div>
+
+                        <div class="chart-wrapper">
+                            <canvas
+                                id="rating-price-chart"
+                                aria-label="Product price versus rating scatter chart"
+                            ></canvas>
+                        </div>
+
+                    </article>
+
+
+                    <article class="chart-card surface">
+
+                        <div class="chart-card-heading">
+
+                            <div>
+                                <span class="chart-overline">
+                                    AT A GLANCE
+                                </span>
+
+                                <h3>
+                                    Price statistics
+                                </h3>
+                            </div>
+
+                            <span class="chart-interaction">
+                                ↗
+                                <small>click to explore</small>
+                            </span>
+
+                        </div>
+
+                        <div class="chart-wrapper">
+                            <canvas
+                                id="stats-chart"
+                                aria-label="Price statistics chart"
+                            ></canvas>
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+                <!-- =================================================
+                     PRODUCT DATA
+                     ================================================= -->
+
+                <section class="products-section surface">
+
+                    <div class="products-heading">
+
+                        <div>
+
+                            <p class="eyebrow">
+                                COLLECTED DATA
+                            </p>
+
+                            <h2>
+                                Products
+                                <span
+                                    class="table-count"
+                                    id="table-count"
+                                >
+                                    0
+                                </span>
+                            </h2>
+
+                        </div>
+
+
+                        <div class="table-tools">
+
+                            <label class="table-search">
+
+                                <span>⌕</span>
+
+                                <input
+                                    id="product-search"
+                                    type="search"
+                                    placeholder="Search products"
+                                    aria-label="Search products"
+                                >
+
+                            </label>
+
+
+                            <select
+                                id="category-filter"
+                                aria-label="Filter by category"
+                            >
+                                <option value="">
+                                    All categories
+                                </option>
+                            </select>
+
+
+                            <select
+                                id="product-sort"
+                                aria-label="Sort products"
+                            >
+                                <option value="name">
+                                    Sort: name
+                                </option>
+
+                                <option value="price-asc">
+                                    Price: low to high
+                                </option>
+
+                                <option value="price-desc">
+                                    Price: high to low
+                                </option>
+
+                                <option value="rating-desc">
+                                    Rating: highest
+                                </option>
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="table-scroll">
+
+                        <table class="product-table">
+
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    <th>Rating</th>
+                                    <th>Availability</th>
+                                    <th>Category</th>
+                                    <th>Website</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="products-table"></tbody>
+
+                        </table>
+
+
+                        <div
+                            id="table-empty"
+                            class="empty-state hidden"
+                        >
+                            <span>⌕</span>
+
+                            <b>
+                                No matching products
+                            </b>
+
+                            <small>
+                                Try changing the search or filters.
+                            </small>
+                        </div>
+
+                    </div>
+
+
+                    <div class="table-footer">
+
+                        <span id="table-range">
+                            Showing 0 products
+                        </span>
+
+                        <div class="pagination">
+
+                            <button
+                                id="page-prev"
+                                type="button"
+                                aria-label="Previous page"
+                                disabled
+                            >
+                                ←
+                            </button>
+
+                            <span id="page-label">
+                                1 / 1
+                            </span>
+
+                            <button
+                                id="page-next"
+                                type="button"
+                                aria-label="Next page"
+                                disabled
+                            >
+                                →
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </section>
+
+
+            <!-- =================================================
+                 FOOTER
+                 ================================================= -->
+
+            <footer class="workspace-footer">
+
+                <span>
+                    <strong>PriceLens</strong>
+                    <span>·</span>
+                    Product intelligence from public pages
+                </span>
+
+                <span>
+                    Respect site rules. Compare responsibly.
+                </span>
+
+            </footer>
+
+        </div>
+
+    </main>
+
+
+    <!-- =====================================================
+         PRODUCT DETAIL DIALOG
+         ===================================================== -->
+
+    <dialog
+        id="detail-dialog"
+        class="detail-dialog"
+        aria-labelledby="detail-title"
+    >
+        <div id="detail-content"></div>
+    </dialog>
+
+
+    <!-- =====================================================
+         SCRIPTS
+         ===================================================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='chart-explorer.js') }}"></script>
+
+    <script
+        src="{{ url_for('static', filename='dashboard.js') }}"
+    ></script>
+
+</body>
+</html>

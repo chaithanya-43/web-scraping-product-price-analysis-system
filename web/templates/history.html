@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#0B0D12">
+
+    <title>Analysis history · PriceLens</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+
+<body class="app-shell history-page">
+
+    <!-- Mobile navigation -->
+
+    <button
+        id="sidebar-toggle"
+        class="sidebar-toggle"
+        aria-label="Open navigation"
+        aria-expanded="false"
+    >
+        ☰
+    </button>
+
+    <div
+        id="sidebar-scrim"
+        class="sidebar-scrim"
+    ></div>
+
+
+    <!-- Sidebar -->
+
+    <aside
+        class="sidebar"
+        id="app-sidebar"
+    >
+
+        <a
+            class="brand"
+            href="/dashboard"
+        >
+            <span class="brand-icon">P</span>
+
+            <span>
+                Price<span class="brand-accent">Lens</span>
+                <small>PRODUCT INTELLIGENCE</small>
+            </span>
+        </a>
+
+
+        <div class="nav-label">
+            WORKSPACE
+        </div>
+
+
+        <nav
+            class="side-nav"
+            aria-label="Main navigation"
+        >
+
+            <a href="/dashboard">
+                <span>⌂</span>
+                Overview
+            </a>
+
+
+            <a
+                class="active"
+                href="/history"
+            >
+                <span>◷</span>
+                Analysis history
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="sidebar-safety">
+                <span>◈</span>
+
+                <div>
+                    <b>Responsible access</b>
+                    <small>
+                        Public pages · robots.txt respected
+                    </small>
+                </div>
+            </div>
+
+
+            <a
+                class="profile-link"
+                href="/profile"
+            >
+
+                <span
+                    class="avatar"
+                    id="user-avatar"
+                >
+                    U
+                </span>
+
+                <span class="user-meta">
+
+                    <b id="sidebar-user-name">
+                        Your account
+                    </b>
+
+                    <small id="sidebar-user-email">
+                        Profile & settings
+                    </small>
+
+                </span>
+
+            </a>
+
+
+            <button
+                id="logout-button"
+                class="logout-button"
+                type="button"
+            >
+                <span>↗</span>
+                Sign out
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- Main workspace -->
+
+    <main class="workspace history-workspace">
+
+
+        <!-- Top bar -->
+
+        <header class="topbar">
+
+            <div>
+
+                <div class="breadcrumb">
+                    Workspace
+                    <span>/</span>
+                    <b>Analysis history</b>
+                </div>
+
+                <p class="topbar-subtitle">
+                    Your saved product research
+                </p>
+
+            </div>
+
+
+            <div class="topbar-user">
+
+                <span class="live-dot"></span>
+
+                <span>
+                    Private workspace
+                </span>
+
+            </div>
+
+        </header>
+
+
+        <!-- Page heading -->
+
+        <section class="history-heading">
+
+            <div class="history-heading-copy">
+
+                <p class="eyebrow">
+                    RESEARCH LIBRARY
+                </p>
+
+                <h1>
+                    Analysis history
+                </h1>
+
+                <p>
+                    Reopen a saved analysis to explore the products
+                    and charts again.
+                </p>
+
+            </div>
+
+
+            <a
+                class="history-new-button"
+                href="/dashboard"
+            >
+                <span>＋</span>
+                New analysis
+            </a>
+
+        </section>
+
+
+        <!-- History panel -->
+
+        <section class="history-panel surface">
+
+
+            <div class="history-panel-header">
+
+                <div>
+
+                    <p class="panel-overline">
+                        SAVED RESEARCH
+                    </p>
+
+                    <h2>
+                        Your analyses
+
+                        <span
+                            class="table-count"
+                            id="history-count"
+                        >
+                            0
+                        </span>
+                    </h2>
+
+                    <p class="history-panel-description">
+                        Previously completed product research is stored
+                        securely in your private workspace.
+                    </p>
+
+                </div>
+
+
+                <div class="history-search-wrap">
+
+                    <span class="history-search-icon">
+                        ⌕
+                    </span>
+
+                    <input
+                        id="history-search"
+                        class="history-search"
+                        type="search"
+                        placeholder="Search websites"
+                        aria-label="Search analysis history"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- Table -->
+
+            <div class="table-scroll history-table-scroll">
+
+                <table class="history-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                WEBSITE
+                            </th>
+
+                            <th>
+                                PRODUCTS
+                            </th>
+
+                            <th>
+                                AVERAGE PRICE
+                            </th>
+
+                            <th>
+                                DATE
+                            </th>
+
+                            <th>
+                                <span class="sr-only">
+                                    ACTION
+                                </span>
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="history-table">
+                    </tbody>
+
+                </table>
+
+
+                <!-- Empty state -->
+
+                <div
+                    id="history-empty"
+                    class="empty-state hidden"
+                >
+
+                    <div class="empty-icon">
+                        ◷
+                    </div>
+
+                    <b>
+                        No saved analyses yet
+                    </b>
+
+                    <small>
+                        Start an analysis and it will appear here.
+                    </small>
+
+                    <a
+                        href="/dashboard"
+                        class="empty-action"
+                    >
+                        Start an analysis →
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- Status -->
+
+            <div
+                id="history-status"
+                class="status-box hidden"
+                role="status"
+                aria-live="polite"
+            ></div>
+
+
+        </section>
+
+
+        <!-- Footer -->
+
+        <footer class="workspace-footer">
+
+            <span>
+                PriceLens · History is visible only to your account.
+            </span>
+
+            <span>
+                <a href="/dashboard">
+                    Start a new analysis →
+                </a>
+            </span>
+
+        </footer>
+
+
+    </main>
+
+
+    <script src="{{ url_for('static', filename='history.js') }}"></script>
+
+</body>
+
+</html>

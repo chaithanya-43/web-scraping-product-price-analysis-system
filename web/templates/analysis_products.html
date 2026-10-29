@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Collected Products · PriceLens</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="app-shell analysis-page">
+
+<button id="sidebar-toggle" class="sidebar-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+<div id="sidebar-scrim" class="sidebar-scrim"></div>
+
+<aside class="sidebar" id="app-sidebar">
+
+    <a class="brand" href="/dashboard">
+        <span class="brand-icon">P</span>
+        <span>
+            Price<span class="brand-accent">Lens</span>
+            <small>PRODUCT INTELLIGENCE</small>
+        </span>
+    </a>
+
+    <div class="nav-label">WORKSPACE</div>
+
+    <nav class="side-nav">
+        <a href="/dashboard"><span>⌂</span> Overview</a>
+        <a href="/history"><span>◷</span> Analysis history</a>
+    </nav>
+
+    <div class="sidebar-bottom">
+
+        <div class="sidebar-safety">
+            <span>◈</span>
+            <div>
+                <b>Responsible access</b>
+                <small>Public pages · robots.txt respected</small>
+            </div>
+        </div>
+
+        <a class="profile-link" href="/profile">
+            <span class="avatar" id="user-avatar">U</span>
+            <span class="user-meta">
+                <b id="sidebar-user-name">Your account</b>
+                <small id="sidebar-user-email">Profile &amp; settings</small>
+            </span>
+            <span class="profile-chevron">↗</span>
+        </a>
+
+        <button id="logout-button" class="logout-button">
+            <span>↗</span> Sign out
+        </button>
+
+    </div>
+
+</aside>
+
+<main class="workspace">
+
+    <header class="topbar">
+        <div>
+            <div class="breadcrumb">
+                Workspace <span>/</span> <b>Collected products</b>
+            </div>
+
+            <p class="topbar-subtitle">
+                Web Scraping &amp; Product Price Analysis
+            </p>
+        </div>
+
+        <div class="topbar-user">
+            <span class="live-dot"></span>
+            <span>Analysis view</span>
+            <span class="avatar small-avatar" id="header-avatar">U</span>
+        </div>
+    </header>
+
+    <section class="analysis-page-content">
+
+        <a class="analysis-back" href="/dashboard?analysis={{ request.view_args.analysis_id }}">
+            ← Back to overview
+        </a>
+
+        <div class="analysis-page-heading">
+
+            <div>
+                <p class="eyebrow">COLLECTED DATA</p>
+
+                <h1>Products</h1>
+
+                <p>
+                    Browse the product data collected during this analysis.
+                </p>
+            </div>
+
+            <div class="analysis-source-card">
+                <span>SOURCE</span>
+                <b id="analysis-source">Loading...</b>
+                <small id="analysis-product-count">— products</small>
+            </div>
+
+        </div>
+
+        <div id="analysis-status" class="analysis-status hidden"></div>
+
+        <section class="products-analysis-panel surface">
+
+            <div class="products-analysis-toolbar">
+
+                <div>
+                    <span class="chart-overline">PRODUCT DATASET</span>
+                    <h2 id="products-title">Collected products</h2>
+                </div>
+
+                <div class="products-analysis-controls">
+
+                    <input
+                        id="analysis-product-search"
+                        type="search"
+                        placeholder="Search products..."
+                        aria-label="Search products"
+                    >
+
+                    <select id="analysis-product-sort" aria-label="Sort products">
+                        <option value="name">Name</option>
+                        <option value="price-asc">Price: low to high</option>
+                        <option value="price-desc">Price: high to low</option>
+                        <option value="rating-desc">Rating: highest</option>
+                    </select>
+
+                </div>
+
+            </div>
+
+            <div class="analysis-table-scroll">
+
+                <table class="analysis-products-table">
+
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Rating</th>
+                            <th>Availability</th>
+                            <th>Category</th>
+                            <th>Website</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="analysis-products-table"></tbody>
+
+                </table>
+
+                <div id="analysis-products-empty" class="empty-state hidden">
+                    <span>⌕</span>
+                    <b>No matching products</b>
+                    <small>Try another search term.</small>
+                </div>
+
+            </div>
+
+            <div class="analysis-table-footer">
+
+                <span id="analysis-table-range">
+                    Showing 0 products
+                </span>
+
+                <div class="pagination">
+
+                    <button
+                        id="analysis-page-prev"
+                        aria-label="Previous page"
+                        disabled
+                    >
+                        ←
+                    </button>
+
+                    <span id="analysis-page-label">1 / 1</span>
+
+                    <button
+                        id="analysis-page-next"
+                        aria-label="Next page"
+                        disabled
+                    >
+                        →
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </section>
+
+    <footer class="workspace-footer">
+        <span>PriceLens <span>·</span> Product intelligence from public pages</span>
+        <span>Respect site rules. Compare responsibly.</span>
+    </footer>
+
+</main>
+
+<script src="{{ url_for('static', filename='chart-explorer.js') }}"></script>
+<script src="{{ url_for('static', filename='analysis.js') }}"></script>
+
+</body>
+</html>

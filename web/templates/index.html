@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width,initial-scale=1"
+    >
+
+    <meta
+        name="description"
+        content="Analyze product prices from public ecommerce pages and structured product data."
+    >
+
+    <meta
+        name="theme-color"
+        content="#0B0D12"
+    >
+
+    <title>
+        PriceLens — Web Scraping &amp; Product Price Analysis
+    </title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body class="landing-page">
+
+
+<!-- =====================================================
+     NAVIGATION
+     ===================================================== -->
+
+<header class="navbar landing-nav">
+
+    <a
+        href="/"
+        class="logo"
+        aria-label="PriceLens home"
+    >
+
+        <span class="brand-mark">
+            P
+        </span>
+
+        <span>
+            Price<span class="landing-brand-accent">Lens</span>
+        </span>
+
+    </a>
+
+
+    <nav
+        class="dashboard-nav"
+        aria-label="Primary navigation"
+    >
+
+        <a href="#how-it-works">
+            How it works
+        </a>
+
+        <a href="/login">
+            Sign in
+        </a>
+
+        <a
+            class="nav-cta"
+            href="/signup"
+        >
+            Create account
+            <span>↗</span>
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN
+     ===================================================== -->
+
+<main class="landing-main">
+
+
+    <!-- HERO -->
+
+    <section class="landing-hero">
+
+
+        <div class="hero-copy">
+
+            <p class="eyebrow">
+
+                <span class="eyebrow-dot"></span>
+
+                PRODUCT PRICE INTELLIGENCE
+
+            </p>
+
+
+            <h1>
+
+                See the story<br>
+
+                behind the
+                <em>price.</em>
+
+            </h1>
+
+
+            <p class="hero-description">
+
+                Turn public product pages into clear, useful
+                pricing insights. Paste a URL, collect the
+                details, and compare the numbers in one calm
+                workspace.
+
+            </p>
+
+
+            <div class="hero-actions">
+
+                <a
+                    href="/signup"
+                    class="primary-link"
+                >
+                    Start analyzing
+                    <span>→</span>
+                </a>
+
+
+                <a
+                    href="/login"
+                    class="secondary-link"
+                >
+                    I already have an account
+                </a>
+
+            </div>
+
+
+            <div class="trust-note">
+
+                <span>✓</span>
+
+                Public pages only · robots.txt respected ·
+                no login or CAPTCHA bypass
+
+            </div>
+
+        </div>
+
+
+        <!-- PRODUCT VISUAL -->
+
+        <div
+            class="hero-art"
+            aria-label="Illustration of a product price analysis dashboard"
+            role="img"
+        >
+
+            <div class="orbit orbit-one"></div>
+
+            <div class="orbit orbit-two"></div>
+
+
+            <!-- Top floating card -->
+
+            <div class="floating-tag tag-top">
+
+                <span class="tag-icon orange">
+                    ↘
+                </span>
+
+                <span>
+
+                    <b>
+                        Price range
+                    </b>
+
+                    <small>
+                        Spot the difference
+                    </small>
+
+                </span>
+
+            </div>
+
+
+            <!-- Dashboard preview -->
+
+            <div class="mini-dashboard">
+
+                <div class="mini-head">
+
+                    <span class="mini-dot"></span>
+                    <span class="mini-dot"></span>
+                    <span class="mini-dot"></span>
+
+                    <span class="mini-title">
+                        YOUR PRICE OVERVIEW
+                    </span>
+
+                </div>
+
+
+                <div class="mini-metric">
+
+                    <span>
+                        Product analysis
+                    </span>
+
+                    <b>
+                        Prices in context
+                    </b>
+
+                    <small>
+                        Compare products, ratings, and availability
+                    </small>
+
+                </div>
+
+
+                <div
+                    class="mini-chart"
+                    aria-label="Decorative price comparison motif"
+                >
+
+                    <svg
+                        viewBox="0 0 360 100"
+                        role="presentation"
+                        aria-hidden="true"
+                    >
+
+                        <path
+                            d="M4 73 C31 73 38 41 63 41 S93 76 118 76 S148 57 171 57 S202 31 226 31 S254 66 278 66 S316 19 356 19"
+                            fill="none"
+                            stroke="#F97316"
+                            stroke-width="3"
+                            stroke-linecap="round"
+                        />
+
+                        <path
+                            d="M4 83 C38 83 53 69 78 69 S112 87 137 87 S177 48 199 48 S231 70 258 70 S302 41 356 41"
+                            fill="none"
+                            stroke="#F59E0B"
+                            stroke-opacity=".8"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                        />
+
+                        <circle
+                            cx="226"
+                            cy="31"
+                            r="4"
+                            fill="#F59E0B"
+                        />
+
+                        <circle
+                            cx="278"
+                            cy="66"
+                            r="4"
+                            fill="#F97316"
+                        />
+
+                    </svg>
+
+                </div>
+
+
+                <div class="mini-legend">
+
+                    <span>
+                        Public product pages
+                    </span>
+
+                    <span>
+                        Price comparison
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Bottom floating card -->
+
+            <div class="floating-tag tag-bottom">
+
+                <span class="tag-icon amber">
+                    ✦
+                </span>
+
+                <span>
+
+                    <b>
+                        Clear insights
+                    </b>
+
+                    <small>
+                        Made from real page data
+                    </small>
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PROCESS STRIP -->
+
+    <section class="landing-proof">
+
+        <span>
+            BUILT FOR THOUGHTFUL RESEARCH
+        </span>
+
+
+        <div>
+
+            <b>01</b>
+            Collect
+
+            <i>→</i>
+
+            <b>02</b>
+            Clean
+
+            <i>→</i>
+
+            <b>03</b>
+            Understand
+
+        </div>
+
+    </section>
+
+
+    <!-- FEATURES -->
+
+    <section
+        class="landing-features"
+        id="how-it-works"
+    >
+
+        <div class="features-intro">
+
+            <p class="eyebrow">
+                A CLEARER WAY TO COMPARE
+            </p>
+
+            <h2>
+                From product page<br>
+                to practical insight.
+            </h2>
+
+        </div>
+
+
+        <article>
+
+            <span>
+                01
+            </span>
+
+            <h3>
+                Bring a public URL
+            </h3>
+
+            <p>
+                Analyze a listing or product page from a site
+                that permits automated access.
+            </p>
+
+        </article>
+
+
+        <article>
+
+            <span>
+                02
+            </span>
+
+            <h3>
+                Collect product details
+            </h3>
+
+            <p>
+                Structured product data is preferred, with
+                thoughtful fallbacks for common page layouts.
+            </p>
+
+        </article>
+
+
+        <article>
+
+            <span>
+                03
+            </span>
+
+            <h3>
+                Explore the numbers
+            </h3>
+
+            <p>
+                Review price ranges, product details, charts,
+                and your saved analysis history.
+            </p>
+
+        </article>
+
+    </section>
+
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
+
+<footer class="landing-footer">
+
+    <a
+        href="/"
+        class="logo"
+    >
+
+        <span class="brand-mark">
+            P
+        </span>
+
+        <span>
+            Price<span class="landing-brand-accent">Lens</span>
+        </span>
+
+    </a>
+
+
+    <span>
+        Respectful analysis of public product information.
+    </span>
+
+</footer>
+
+
+</body>
+</html>

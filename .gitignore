@@ -1,5 +1,8 @@
 ﻿# Virtual environment
 .venv/
+.env
+.env.*
+!.env.example
 
 # Python cache
 __pycache__/
@@ -7,6 +10,11 @@ __pycache__/
 
 # Pytest
 .pytest_cache/
+
+# Local account and analysis-history database
+data/users.db
+data/users.db-shm
+data/users.db-wal
 
 # IDE / editor files
 .vscode/
